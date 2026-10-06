@@ -207,9 +207,9 @@
   .pulse-red{animation:pulse 1.5s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:.2}50%{opacity:1}}
   .fail-glow{filter:drop-shadow(0 0 8px rgba(198,40,40,.45))}
-  .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.45;z-index:0}
+  .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.5;z-index:0}
   section.has-bg{position:relative;overflow:hidden}
-  section.has-bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(11,29,50,.9), rgba(11,29,50,.74) 55%, rgba(16,38,63,.92))}
+  section.has-bg::before{content:"";position:absolute;inset:0;z-index:1;opacity:.5;background:linear-gradient(180deg, rgba(11,29,50,.78), rgba(11,29,50,.55) 55%, rgba(16,38,63,.88))}
   section.has-bg>.wrap{position:relative;z-index:2}
   .bpmn-legend{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;margin:34px 0 0;padding:12px 20px;border:1px solid var(--line-d);border-radius:14px;background:var(--cream2)}
   .bpmn-legend span{display:inline-flex;align-items:center;gap:7px;font-size:.86rem;color:#5c6b80}
