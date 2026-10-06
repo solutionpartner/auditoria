@@ -81,10 +81,11 @@
 
   /* ---- Hero ---- */
   .hero{position:relative;min-height:100dvh;display:flex;align-items:center;background:var(--navy);overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;opacity:.5;background:
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.22;z-index:0}
+  .hero::before{content:"";position:absolute;inset:0;z-index:1;opacity:.55;background:
     radial-gradient(52% 46% at 78% 18%, rgba(231,196,125,.22), transparent 62%),
     radial-gradient(45% 42% at 12% 88%, rgba(30,58,94,.85), transparent 68%)}
-  .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
   .hero-grid{position:relative;z-index:2;display:grid;gap:46px;padding:130px 0 90px}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(231,196,125,.4);padding:8px 14px;border-radius:100px}
   .hero h1{color:#fff;font-size:var(--fs-display);line-height:.98;letter-spacing:-.025em;font-weight:600;margin:28px 0 22px;text-wrap:balance}
@@ -254,6 +255,7 @@
 
 <!-- ══════════ HERO ══════════ -->
 <header id="top" class="hero">
+  <img src="hero-bg.jpg" class="hero-img" alt="" aria-hidden="true">
   <div class="wrap hero-grid">
     <div class="rv">
       <span class="eyebrow">Auditoria de grau consultora · estil KPMG · Deloitte</span>
@@ -327,7 +329,7 @@
   <div class="wrap">
     <div class="rv" style="max-width:820px">
       <span class="kicker">Els teus processos, al descobert</span>
-      <h2>Mapem els teus processos <span class="serif" style="color:var(--gold)">i hi trobem on perds hores i diners.</span></h2>
+      <h2>Mapejem els teus processos <span class="serif" style="color:var(--gold)">i hi trobem on perds hores i diners.</span></h2>
       <p class="sub">Dibuixem els teus processos amb <b style="color:#fff">BPMN</b> —el llenguatge internacional estàndard dels processos de negoci que fan servir les grans consultores. Així cada pas, cada tasca manual i cada coll d’ampolla es fa visible.</p>
     </div>
     <div class="proc-list">
