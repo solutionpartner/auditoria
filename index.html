@@ -53,8 +53,7 @@
   nav.scrolled{background:rgba(11,29,50,.82);backdrop-filter:blur(14px);padding:12px 0;border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
   .logo{display:flex;align-items:center;gap:11px;color:#fff;font-weight:700;letter-spacing:.3px}
-  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#c9a55c);display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px}
-  .logo small{display:block;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);opacity:.85}
+  .logo img{height:44px;width:auto;display:block}
   .nav-links{display:flex;gap:30px;font-size:.92rem;color:rgba(255,255,255,.82)}
   .nav-links a{transition:color .2s}
   .nav-links a:hover{color:var(--gold)}
@@ -72,6 +71,8 @@
   .btn:active{transform:scale(.96)}
   .btn-orange{background:var(--orange);color:#241503;box-shadow:0 10px 28px -10px rgba(255,153,0,.75)}
   .btn-orange:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 16px 32px -10px rgba(255,153,0,.9)}
+  .btn-neon{background:#C6FF3F;color:#16230a;box-shadow:0 10px 28px -10px rgba(198,255,63,.7)}
+  .btn-neon:hover{background:#b4ee2c;transform:translateY(-2px);box-shadow:0 16px 32px -10px rgba(198,255,63,.95)}
   .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
   .btn-dark{background:var(--navy);color:#fff}
@@ -186,6 +187,42 @@
   footer{padding:40px 0 46px;background:var(--navy);border-top:1px solid var(--line);color:rgba(255,255,255,.5);font-size:.88rem}
   footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
 
+  /* ---- BPMN showcase (3 casos) ---- */
+  .bpmn-grid{display:grid;gap:22px;margin-top:46px}
+  @media(min-width:940px){.bpmn-grid{grid-template-columns:repeat(3,1fr)}}
+  .proc-card{background:var(--cream2);border:1px solid var(--line-d);border-radius:20px;padding:22px 20px 20px;box-shadow:0 24px 60px -34px rgba(0,0,0,.55);transition:transform .3s var(--ease)}
+  .proc-card:hover{transform:translateY(-6px)}
+  .proc-card .pc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .proc-card .pc-head h3{color:var(--navy);font-size:1.08rem;font-weight:700;line-height:1.25}
+  .badge-fail{flex-shrink:0;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#fde3e3;color:#c62828;border:1px solid #ef9a9a;padding:5px 9px;border-radius:100px;white-space:nowrap}
+  .proc-card svg{width:100%;height:auto;display:block;margin-top:10px}
+  .pc-note{margin-top:10px;color:#5c6b80;font-size:.9rem;line-height:1.55;text-align:center}
+  .flow-anim{stroke-dasharray:6 6;animation:flow 1.1s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-24}}
+  .pulse-red{animation:pulse 1.7s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.2}50%{opacity:1}}
+  .fail-glow{filter:drop-shadow(0 0 6px rgba(198,40,40,.4))}
+
+  /* ---- Deliverables (ampliat) ---- */
+  .deliv-grid{display:grid;gap:18px;grid-template-columns:1fr;margin-top:40px}
+  @media(min-width:680px){.deliv-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.deliv-grid{grid-template-columns:repeat(3,1fr)}}
+  .deliv-item{background:var(--cream2);border:1px solid var(--line-d);border-radius:18px;padding:26px;position:relative;overflow:hidden;transition:transform .3s var(--ease)}
+  .deliv-item:hover{transform:translateY(-5px)}
+  .deliv-item .ic{width:52px;height:52px;border-radius:14px;background:var(--navy);color:var(--gold);display:grid;place-items:center;margin-bottom:16px}
+  .deliv-item .ic.gold{background:linear-gradient(135deg,var(--gold),#c9a55c);color:var(--navy)}
+  .deliv-item .ic.red{background:#c62828;color:#fff}
+  .deliv-item .ic.neon{background:#C6FF3F;color:#16230a}
+  .deliv-item h3{color:var(--navy);font-size:1.18rem;font-weight:700}
+  .deliv-item p{color:var(--text-m);font-size:.94rem;line-height:1.6;margin-top:8px}
+  .deliv-item .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange2);border:1px solid currentColor;border-radius:100px;padding:3px 9px;margin-top:14px}
+
+  .exhibit{background:var(--cream2);border:1px solid var(--line-d);border-radius:20px;padding:26px;margin-top:36px}
+  .exhibit .ex-title{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange2);font-weight:700;margin-bottom:18px}
+  .exhibit svg{width:100%;height:auto;display:block}
+  .twoCol{display:grid;gap:22px}
+  @media(min-width:900px){.twoCol{grid-template-columns:1fr 1fr}}
+
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
     .rv{opacity:1;transform:none}
@@ -197,14 +234,14 @@
 <!-- ══════════ NAV ══════════ -->
 <nav id="nav">
   <div class="wrap nav-in">
-    <a href="#top" class="logo"><span class="mark">S</span><span>SolutionPartner<small>AI Strategy &amp; Automation</small></span></a>
+    <a href="#top" class="logo"><img src="logo.png" alt="SolutionPartner.AI"></a>
     <div class="nav-links">
       <a href="#dolor">El cost de no fer-ho</a>
       <a href="#metode">El mètode</a>
       <a href="#passos">Com funciona</a>
       <a href="#resultat">Què rebràs</a>
     </div>
-    <a href="#demana" class="btn btn-orange nav-cta">Demana la teva auditoria</a>
+    <a href="https://solutionpartner.github.io/questionari-1b/" target="_blank" rel="noopener" class="btn btn-orange nav-cta">Inicia el diagnòstic</a>
   </div>
 </nav>
 
@@ -216,8 +253,8 @@
       <h1>Estàs perdent diners <span class="serif">cada dia</span> que ningú no mira com funciona el teu negoci.</h1>
       <p class="lead">Et demostrem, amb xifres i evidències, què deixa de guanyar la teva empresa — i et deixem un pla tangible per recuperar-ho. Una auditoria seriosa, amb investigació real del teu sector, al nivell de les grans consultores internacionals.</p>
       <div class="actions">
-        <a href="#demana" class="btn btn-orange btn-lg">Demana la teva auditoria →</a>
-        <a href="#metode" class="btn btn-ghost btn-lg">Vegeu el mètode</a>
+        <a href="https://solutionpartner.github.io/questionari-1b/" target="_blank" rel="noopener" class="btn btn-orange btn-lg">Inicia el diagnòstic →</a>
+        <a href="https://solutionpartner.github.io/business-ai-os/" target="_blank" rel="noopener" class="btn btn-neon btn-lg">Coneix el Business AI OS →</a>
       </div>
       <div class="trust">
         <span>✓ <b>Rigor de consultora</b> amb fonts citades</span>
@@ -286,35 +323,80 @@
       <h2>Mapem com funciona la teva empresa <span class="serif" style="color:var(--gold)">i hi trobem les falles.</span></h2>
       <p class="sub">Dibuixem els teus processos amb <b style="color:#fff">BPMN</b> —el llenguatge internacional estàndard dels processos de negoci que fan servir les grans consultores. Així cada pas, cada tasca manual i cada coll d’ampolla es fa visible.</p>
     </div>
-    <div class="bpmn rv" style="margin-top:46px">
-      <svg viewBox="0 0 880 300" role="img" aria-label="Diagrama BPMN simplificat d'un procés amb una falla detectada">
-        <defs>
-          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B1D32"/></marker>
-          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e8890c"/></marker>
-        </defs>
-        <!-- start -->
-        <ellipse cx="70" cy="150" rx="26" ry="26" fill="none" stroke="#0B1D32" stroke-width="2.5"/>
-        <line x1="96" y1="150" x2="150" y2="150" stroke="#0B1D32" stroke-width="2" marker-end="url(#ar)"/>
-        <!-- task: rep predis -> factura manual -->
-        <rect x="150" y="116" width="150" height="68" rx="12" fill="#E7C47D" stroke="#0B1D32" stroke-width="2"/>
-        <text x="225" y="148" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#14243A" font-weight="600">Petició / comanda</text>
-        <line x1="300" y1="150" x2="356" y2="150" stroke="#0B1D32" stroke-width="2" marker-end="url(#ar)"/>
-        <!-- manual task (destaquem la falla) -->
-        <rect x="356" y="116" width="150" height="68" rx="12" fill="#fff" stroke="#e8890c" stroke-width="3"/>
-        <text x="431" y="142" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#14243A" font-weight="600">Facturació</text>
-        <text x="431" y="162" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#e8890c" font-weight="700">a MÀ · 6h/set</text>
-        <line x1="506" y1="150" x2="562" y2="150" stroke="#e8890c" stroke-width="2" marker-end="url(#arw)"/>
-        <rect x="562" y="116" width="150" height="68" rx="12" fill="#0B1D32" stroke="#0B1D32" stroke-width="2"/>
-        <text x="637" y="148" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#E7C47D" font-weight="600">Automatitzat</text>
-        <line x1="712" y1="150" x2="786" y2="150" stroke="#0B1D32" stroke-width="2" marker-end="url(#ar)"/>
-        <ellipse cx="816" cy="150" rx="26" ry="26" fill="#0B1D32"/>
-        <text x="816" y="155" text-anchor="middle" font-family="Space Grotesk" font-size="16" fill="#E7C47D">✓</text>
-        <!-- callout/falla -->
-        <rect x="356" y="196" width="300" height="66" rx="12" fill="#FFF4E6" stroke="#e8890c" stroke-width="1.5"/>
-        <text x="506" y="220" text-anchor="middle" font-family="Space Grotesk" font-size="12.5" fill="#14243A" font-weight="700">FALLA DETECTADA a la facturació manual</text>
-        <text x="506" y="242" text-anchor="middle" font-family="Space Grotesk" font-size="11.5" fill="#5c6b80">Coll d’ampolla: 6 h/setmana + 2 errors/mes de mitjana estàndard</text>
-      </svg>
-      <p class="meta" style="margin-top:16px;font-size:.9rem;color:#5c6b80">Diagrama simplificat i il·lustratiu. A l’auditoria, els teus processos reals es representen així i cada falla es quantifica.</p>
+    <div class="bpmn-grid">
+      <!-- === Cas 1: Facturació === -->
+      <div class="proc-card rv">
+        <div class="pc-head"><h3>Facturació manual</h3><span class="badge-fail">● Falla</span></div>
+        <svg viewBox="0 0 560 200" role="img" aria-label="Procés de facturació amb falla manual">
+          <defs>
+            <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B1D32"/></marker>
+            <marker id="b1r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker>
+          </defs>
+          <ellipse cx="30" cy="100" rx="21" ry="21" fill="none" stroke="#0B1D32" stroke-width="2.5"/>
+          <line x1="51" y1="100" x2="96" y2="100" class="flow-anim" stroke="#0B1D32" stroke-width="2" marker-end="url(#b1)"/>
+          <rect x="96" y="68" width="110" height="64" rx="11" fill="#E7C47D" stroke="#0B1D32" stroke-width="1.5"/>
+          <text x="151" y="92" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#14243A" font-weight="600">Comanda</text>
+          <text x="151" y="110" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#14243A" font-weight="600">rebuda</text>
+          <line x1="206" y1="100" x2="262" y2="100" class="flow-anim" stroke="#c62828" stroke-width="2" marker-end="url(#b1r)"/>
+          <rect x="262" y="68" width="128" height="64" rx="11" fill="#FDECEC" stroke="#c62828" stroke-width="3" class="fail-glow"/>
+          <circle cx="384" cy="100" r="9" fill="#c62828" class="pulse-red"/>
+          <text x="326" y="93" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#c62828" font-weight="700">Facturació</text>
+          <text x="326" y="112" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#c62828" font-weight="700">a mà · 6 h/set</text>
+          <line x1="390" y1="100" x2="446" y2="100" class="flow-anim" stroke="#0B1D32" stroke-width="2" marker-end="url(#b1)"/>
+          <rect x="446" y="68" width="92" height="64" rx="11" fill="#0B1D32"/>
+          <text x="492" y="100" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#E7C47D" font-weight="600">Auto ✓</text>
+        </svg>
+        <p class="pc-note"><b style="color:#c62828">6 h/setmana perdudes</b> i 2 errors/mes de mitjana a la facturació manual. Eliminables automàticament.</p>
+      </div>
+      <!-- === Cas 2: Atenció client === -->
+      <div class="proc-card rv">
+        <div class="pc-head"><h3>Atenció al client</h3><span class="badge-fail">● Falla</span></div>
+        <svg viewBox="0 0 560 200" role="img" aria-label="Procés d'atenció al client amb falla manual">
+          <defs>
+            <marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B1D32"/></marker>
+            <marker id="b2r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker>
+          </defs>
+          <ellipse cx="30" cy="100" rx="21" ry="21" fill="none" stroke="#0B1D32" stroke-width="2.5"/>
+          <line x1="51" y1="100" x2="96" y2="100" class="flow-anim" stroke="#0B1D32" stroke-width="2" marker-end="url(#b2)"/>
+          <rect x="96" y="68" width="104" height="64" rx="11" fill="#E7C47D" stroke="#0B1D32" stroke-width="1.5"/>
+          <text x="148" y="92" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#14243A" font-weight="600">Consulta</text>
+          <text x="148" y="110" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#14243A" font-weight="600">client</text>
+          <line x1="200" y1="100" x2="256" y2="100" class="flow-anim" stroke="#c62828" stroke-width="2" marker-end="url(#b2r)"/>
+          <rect x="256" y="68" width="134" height="64" rx="11" fill="#FDECEC" stroke="#c62828" stroke-width="3" class="fail-glow"/>
+          <circle cx="384" cy="100" r="9" fill="#c62828" class="pulse-red"/>
+          <text x="323" y="93" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#c62828" font-weight="700">Resposta</text>
+          <text x="323" y="112" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#c62828" font-weight="700">manual lenta</text>
+          <line x1="390" y1="100" x2="446" y2="100" class="flow-anim" stroke="#0B1D32" stroke-width="2" marker-end="url(#b2)"/>
+          <rect x="446" y="68" width="92" height="64" rx="11" fill="#0B1D32"/>
+          <text x="492" y="100" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#E7C47D" font-weight="600">Agent 24/7</text>
+        </svg>
+        <p class="pc-note">Consultes que esperen a l’horari laboral i clients que es perden. Un agent respon al moment, de dia i de nit.</p>
+      </div>
+      <!-- === Cas 3: Inventari === -->
+      <div class="proc-card rv">
+        <div class="pc-head"><h3>Inventari / estocs</h3><span class="badge-fail">● Falla</span></div>
+        <svg viewBox="0 0 560 200" role="img" aria-label="Procés d'inventari amb falla manual">
+          <defs>
+            <marker id="b3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B1D32"/></marker>
+            <marker id="b3r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker>
+          </defs>
+          <ellipse cx="30" cy="100" rx="21" ry="21" fill="none" stroke="#0B1D32" stroke-width="2.5"/>
+          <line x1="51" y1="100" x2="96" y2="100" class="flow-anim" stroke="#0B1D32" stroke-width="2" marker-end="url(#b3)"/>
+          <rect x="96" y="68" width="104" height="64" rx="11" fill="#E7C47D" stroke="#0B1D32" stroke-width="1.5"/>
+          <text x="148" y="92" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#14243A" font-weight="600">Venda</text>
+          <text x="148" y="110" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#14243A" font-weight="600">registrada</text>
+          <line x1="200" y1="100" x2="256" y2="100" class="flow-anim" stroke="#c62828" stroke-width="2" marker-end="url(#b3r)"/>
+          <rect x="256" y="68" width="134" height="64" rx="11" fill="#FDECEC" stroke="#c62828" stroke-width="3" class="fail-glow"/>
+          <circle cx="384" cy="100" r="9" fill="#c62828" class="pulse-red"/>
+          <text x="323" y="93" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#c62828" font-weight="700">Estoc a mà</text>
+          <text x="323" y="112" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#c62828" font-weight="700">desajustat</text>
+          <line x1="390" y1="100" x2="446" y2="100" class="flow-anim" stroke="#0B1D32" stroke-width="2" marker-end="url(#b3)"/>
+          <rect x="446" y="68" width="92" height="64" rx="11" fill="#0B1D32"/>
+          <text x="492" y="100" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#E7C47D" font-weight="600">Sincro ✓</text>
+        </svg>
+        <p class="pc-note">Trencaments d’estoc i desajustos que costen vendes. Sincronitzat en temps real, sense comptes a mà.</p>
+      </div>
+      <p class="rv" style="grid-column:1/-1;margin-top:6px;font-size:.9rem;color:#5c6b80;text-align:center">Exemples il·lustratius. A l’auditoria, els teus processos reals es representen amb aquest mateix nivell de detall i cada falla es quantifica en hores i euros. <b style="color:#c62828">El vermell marca on fallen</b> i on hi ha retorn immediat.</p>
     </div>
   </div>
 </section>
@@ -337,33 +419,115 @@
   </div>
 </section>
 
-<!-- ══════════ RESULT / EXEMPLE ══════════ -->
+<!-- ══════════ RESULT / QUÈ REBRÀS ══════════ -->
 <section id="resultat">
   <div class="wrap">
-    <div class="grid2">
-      <div class="rv">
-        <span class="kicker">Què rebràs</span>
-        <h2 style="color:#fff">Un paquet digne d’una gran consultoria.</h2>
-        <p class="sub">No et venem "un PDF". Et lliurem un conjunt d’entregables pensats perquè tu —i el teu consell— ho entengueu tot en cinc minuts i us en quedeu amb el retorn.</p>
-        <ul style="margin-top:26px;display:grid;gap:14px;color:rgba(255,255,255,.8)">
-          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Informe web interactiu &amp; autocontingut</li>
-          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> PDF de l’informe, imprimible i professional</li>
-          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Excel amb totes les dades i el benchmarking</li>
-          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Resum d’una pàgina per portar al consell</li>
-          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Model d’impacte jugable: canvia les teves xifres i veu el retorn en directe</li>
-        </ul>
+    <div class="rv" style="max-width:820px">
+      <span class="kicker">Què rebràs</span>
+      <h2 style="color:#fff">No són "un document". És un <span class="serif" style="color:var(--gold)">paquet complet</span> que impressiona el teu consell.</h2>
+      <p class="sub">Et lliurem un conjunt d’entregables pensat com fan les grans consultories: perquè tu ho entenguis en cinc minuts, el teu equip ho pugui fer servir i el teu consell s’ho prengui seriosament. Res de "un informe per arxivar".</p>
+    </div>
+
+    <div class="deliv-grid">
+      <div class="deliv-item rv">
+        <div class="ic gold"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Informe web interactiu</h3>
+        <p>Un informe fet com una web premium que obres i ensenyes al teu equip des de qualsevol dispositiu: gràfics animats, findings d’auditoria i el pla de millora. És el protagonista del lliurament.</p>
       </div>
-      <div class="rv">
-        <div class="dash">
-          <div style="font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:18px">Exemple del tipus de resultat · empresa de serveis de 14 persones</div>
-          <div class="bar">
-            <div class="kpi"><div class="lbl">Hores/setmana recuperades</div><div class="val">11 <b>h</b></div></div>
-            <div class="kpi"><div class="lbl">Estalvi estimat/any</div><div class="val">+<b>18.400 €</b></div></div>
-            <div class="kpi"><div class="lbl">Termini per pagar-se sola</div><div class="val"><b>2,3</b> mesos</div></div>
-          </div>
-          <div class="meta">Exemple il·lustratiu de com es presenten els resultats. Els teus números es calculen a partir de les teves dades reals.</div>
-        </div>
+      <div class="deliv-item rv">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6z"/><polyline points="14 2 14 6 18 6"/></svg></div>
+        <h3>PDF executiu de l’informe</h3>
+        <p>La versió imprimible i professional, amb enllaços clicables a cada font. Perfecte per adjuntar al correu, arxivar i portar a l’acta del consell.</p>
       </div>
+      <div class="deliv-item rv">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M10 9l5 2-5 2z"/></svg></div>
+        <h3>Presentació per al consell</h3>
+        <p>Un deck de poques diapositives i números grans, llest per projectar. Una idea per pantalla i tota la narrativa ben muntada perquè la decisió es prengui.</p>
+      </div>
+      <div class="deliv-item rv">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+        <h3>Resum d’una pàgina</h3>
+        <p>El one-pager amb la tesi central, tres números i la decisió sol·licitada. Per imprimir, compartir per WhatsApp i tancar la venda amb una mirada.</p>
+      </div>
+      <div class="deliv-item rv">
+        <div class="ic neon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="14" x2="21" y2="14"/></svg></div>
+        <h3>Les teves dades, en el teu format</h3>
+        <p>Totes les dades netes i estructurades, lliurades en <b style="color:var(--navy)">Excel, CSV i JSON</b> — per fer-les servir, importar-les o connectar-les amb el que tinguis. No et deixem dades tancades dins d’un informe.</p>
+        <span class="tag">Excel · CSV · JSON</span>
+      </div>
+      <div class="deliv-item rv">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="7" width="3" height="13"/><rect x="16" y="10" width="3" height="10"/></svg></div>
+        <h3>Model d’impacte jugable</h3>
+        <p>Canvia les teves xifres —hores, % de reserves online, costos— i veu el retorn recalculat en directe. És el "wow" que fa que interioritzis el valor i juguis amb els teus números.</p>
+      </div>
+      <div class="deliv-item rv">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="3"/><line x1="7" y1="8" x2="7" y2="5"/><line x1="17" y1="8" x2="17" y2="5"/><circle cx="12" cy="14" r="3.4"/></svg></div>
+        <h3>Mapa de processos en BPMN</h3>
+        <p>Els teus processos representats amb el llenguatge estàndard de les consultores internacionals, amb cada falla quantificada en hores i euros i la via per resoldre-la.</p>
+      </div>
+      <div class="deliv-item rv">
+        <div class="ic red"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 5-3 8.5-7 10-4-1.5-7-5-7-10V5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Revisió de ciberseguretat</h3>
+        <p>Com tens les dades, els accessos i el compliment? Et fem una avaluació de seguretat i un pla per començar a tapar els riscos — perquè el teu negoci no sigui el proper titular.</p>
+        <span class="tag">Seguretat · Compliment</span>
+      </div>
+    </div>
+
+    <!-- Exhibits estil consultora (Gartner / Deloitte) -->
+    <div class="twoCol">
+      <div class="exhibit rv">
+        <div class="ex-title">Exhibit 01 · Estil Gartner — on és la teva empresa</div>
+        <svg viewBox="0 0 560 300" role="img" aria-label="Corba d'adopció d'IA estil Gartner">
+          <line x1="40" y1="272" x2="545" y2="272" stroke="#c9d2de" stroke-width="1.5"/>
+          <line x1="40" y1="272" x2="40" y2="18" stroke="#c9d2de" stroke-width="1.5"/>
+          <path d="M40 250 C120 118, 190 38, 262 58 C334 80, 380 150, 432 168 C472 182, 510 188, 540 183" fill="none" stroke="#E7C47D" stroke-width="4" opacity=".55"/>
+          <path d="M40 250 C120 118, 190 38, 262 58 C334 80, 380 150, 432 168 C472 182, 510 188, 540 183" fill="none" stroke="#0B1D32" stroke-width="2.5"/>
+          <line x1="262" y1="272" x2="262" y2="58" stroke="#c9d2de" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="432" y1="272" x2="432" y2="168" stroke="#0B1D32" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="432" cy="168" r="9" fill="#FF9900"/>
+          <text x="432" y="150" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#e8890c" font-weight="700">TU</text>
+          <text x="120" y="290" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#5c6b80">Innovation Trigger</text>
+          <text x="262" y="286" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#5c6b80">Peak of Expectations</text>
+          <text x="432" y="290" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#0B1D32" font-weight="700">Slope of Enlightenment</text>
+          <text x="520" y="286" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#5c6b80">Plateau</text>
+        </svg>
+        <p style="margin-top:12px;color:#5c6b80;font-size:.92rem;line-height:1.55">La majoria d’empreses amb resultats reals ja no estan al pic de les expectatives: són al pendent on la IA deixa de ser "fum" i es converteix en estalvi tangible. Et situem exactament on ets — i què t’estàs perdent per no ser-hi.</p>
+      </div>
+      <div class="exhibit rv">
+        <div class="ex-title">Exhibit 02 · Estil Deloitte — maduresa digital en 6 dimensions</div>
+        <svg viewBox="0 0 560 300" role="img" aria-label="Maduresa digital en sis dimensions">
+          <g font-family="Space Grotesk" font-size="11" fill="#14243A">
+            <text x="12" y="36">D1 · Estratègia</text>
+            <text x="12" y="76">D2 · Dades</text>
+            <text x="12" y="116">D3 · Tecnologia</text>
+            <text x="12" y="156">D4 · Capital humà</text>
+            <text x="12" y="196">D5 · Governança i ètica</text>
+            <text x="12" y="236">D6 · Casos d’ús i valor</text>
+          </g>
+          <g>
+            <rect x="150" y="26" width="320" height="16" rx="8" fill="#E9EDF3"/>
+            <rect x="150" y="26" width="130" height="16" rx="8" fill="#0B1D32"/><text x="482" y="38" text-anchor="end" font-family="Space Grotesk" font-size="10" fill="#5c6b80">2/5</text>
+            <rect x="150" y="66" width="320" height="16" rx="8" fill="#E9EDF3"/>
+            <rect x="150" y="66" width="150" height="16" rx="8" fill="#0B1D32"/><text x="482" y="78" text-anchor="end" font-family="Space Grotesk" font-size="10" fill="#5c6b80">2,4/5</text>
+            <rect x="150" y="106" width="320" height="16" rx="8" fill="#E9EDF3"/>
+            <rect x="150" y="106" width="95" height="16" rx="8" fill="#0B1D32"/><text x="482" y="118" text-anchor="end" font-family="Space Grotesk" font-size="10" fill="#5c6b80">1,5/5</text>
+            <rect x="150" y="146" width="320" height="16" rx="8" fill="#E9EDF3"/>
+            <rect x="150" y="146" width="170" height="16" rx="8" fill="#0B1D32"/><text x="482" y="158" text-anchor="end" font-family="Space Grotesk" font-size="10" fill="#5c6b80">2,7/5</text>
+            <rect x="150" y="186" width="320" height="16" rx="8" fill="#E9EDF3"/>
+            <rect x="150" y="186" width="115" height="16" rx="8" fill="#0B1D32"/><text x="482" y="198" text-anchor="end" font-family="Space Grotesk" font-size="10" fill="#5c6b80">1,8/5</text>
+            <rect x="150" y="226" width="320" height="16" rx="8" fill="#E9EDF3"/>
+            <rect x="150" y="226" width="140" height="16" rx="8" fill="#0B1D32"/><text x="482" y="238" text-anchor="end" font-family="Space Grotesk" font-size="10" fill="#5c6b80">2,2/5</text>
+            <!-- objectiu line -->
+            <line x1="406" y1="18" x2="406" y2="248" stroke="#FF9900" stroke-width="2" stroke-dasharray="4 4"/>
+            <text x="406" y="264" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#e8890c" font-weight="700">Objectiu: 4/5</text>
+          </g>
+        </svg>
+        <p style="margin-top:12px;color:#5c6b80;font-size:.92rem;line-height:1.55">Mesurem el teu grau de maduresa en les sis dimensions que fan servir les grans consultores. Veus d’un cop d’ull on ets, on has de pujar i què et separa del nivell líder.</p>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:46px;text-align:center">
+      <p style="color:rgba(255,255,255,.62);max-width:72ch;margin:0 auto;line-height:1.65">Tots els entregables es lliuren en llenguatge clar i amb el rigor de consultoria: cada xifra té font o està marcada com a estimació, i cada recomanació té propietari i termini. Aquest és el paquet que esperaries de KPMG o Deloitte — <b style="color:#fff">fet per a la teva empresa.</b></p>
     </div>
   </div>
 </section>
@@ -391,7 +555,7 @@
       <span class="kicker">Cada mes que ho ajornes et costa diners</span>
       <h2 style="max-width:22ch;margin-left:auto;margin-right:auto">El teu sector ja no espera. <span class="serif" style="color:var(--gold)">Ni els teus competidors.</span></h2>
       <p class="sub" style="margin:22px auto 34px;max-width:56ch">Descobreix quant pot estalviar la teva empresa i surt amb un pla clar. Places limitades per trimestre per garantir la profunditat de cada auditoria.</p>
-      <a href="mailto:contact@solutionproject.ai?subject=Demana%20la%20meva%20auditoria" class="btn btn-orange btn-lg" style="font-size:1.18rem;padding:20px 46px">Demana la teva auditoria →</a>
+      <a href="https://solutionpartner.github.io/questionari-1b/" target="_blank" rel="noopener" class="btn btn-orange btn-lg" style="font-size:1.18rem;padding:20px 46px">Inicia el diagnòstic →</a>
       <div style="margin-top:26px;color:rgba(255,255,255,.5);font-size:.9rem">Resposta en 24 h laborables · Sense compromís en el primer contacte</div>
     </div>
   </div>
