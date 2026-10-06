@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoria d'IA i Dades — SolutionPartner.AI</title>
+<meta name="description" content="Auditoria digital de grau consultora on es troba cada euro que el teu negoci deixa de guanyar. Metodologia Big Four, agents d'IA que investiguen el teu sector a les millors fonts del món, i un pla tangible de retorn. Demana la teva auditoria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1D32;
+    --navy2:#10263F;
+    --ink:#14243A;
+    --gold:#E7C47D;
+    --cream:#F7F3EA;
+    --cream2:#FDFBF5;
+    --paper:#FBFAF6;
+    --white:#FFFFFF;
+    --orange:#FF9900;
+    --orange2:#e8890c;
+    --line:rgba(255,255,255,.10);
+    --line-d:rgba(20,36,58,.12);
+    --text-d:#1a2b42;
+    --text-m:#5c6b80;
+    --fs-display:clamp(2.6rem, 6.2vw, 5.4rem);
+    --fs-h2:clamp(2rem, 4vw, 3.2rem);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    background:var(--navy);
+    color:#0e2036;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--orange);color:#1a1205}
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---- Nav ---- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:18px 0;
+    transition:background .35s var(--ease), padding .35s var(--ease);
+  }
+  nav.scrolled{background:rgba(11,29,50,.82);backdrop-filter:blur(14px);padding:12px 0;border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .logo{display:flex;align-items:center;gap:11px;color:#fff;font-weight:700;letter-spacing:.3px}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--gold),#c9a55c);display:grid;place-items:center;font-weight:700;color:var(--navy);font-size:15px}
+  .logo small{display:block;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);opacity:.85}
+  .nav-links{display:flex;gap:30px;font-size:.92rem;color:rgba(255,255,255,.82)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-cta{display:none}
+  @media(min-width:900px){.nav-cta{display:inline-flex}}
+
+  /* ---- Botons ---- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:15px 30px;border-radius:10px;border:none;cursor:pointer;
+    font-family:inherit;font-weight:700;font-size:1.02rem;letter-spacing:.2px;
+    transition:transform .18s var(--ease),background .2s,box-shadow .2s;
+    will-change:transform;
+  }
+  .btn:active{transform:scale(.96)}
+  .btn-orange{background:var(--orange);color:#241503;box-shadow:0 10px 28px -10px rgba(255,153,0,.75)}
+  .btn-orange:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 16px 32px -10px rgba(255,153,0,.9)}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-dark{background:var(--navy);color:#fff}
+  .btn-dark:hover{background:var(--navy2)}
+  .btn-lg{padding:18px 40px;font-size:1.12rem}
+
+  /* ---- Hero ---- */
+  .hero{position:relative;min-height:100dvh;display:flex;align-items:center;background:var(--navy);overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.5;background:
+    radial-gradient(52% 46% at 78% 18%, rgba(231,196,125,.22), transparent 62%),
+    radial-gradient(45% 42% at 12% 88%, rgba(30,58,94,.85), transparent 68%)}
+  .hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
+  .hero-grid{position:relative;z-index:2;display:grid;gap:46px;padding:130px 0 90px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(231,196,125,.4);padding:8px 14px;border-radius:100px}
+  .hero h1{color:#fff;font-size:var(--fs-display);line-height:.98;letter-spacing:-.025em;font-weight:600;margin:28px 0 22px;text-wrap:balance}
+  .hero h1 .gold{color:var(--gold)}
+  .hero .lead{color:rgba(255,255,255,.72);font-size:clamp(1.05rem,1.6vw,1.28rem);line-height:1.55;max-width:58ch;text-wrap:pretty}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:16px;margin:34px 0 22px}
+  .trust{display:flex;flex-wrap:wrap;gap:22px;color:rgba(255,255,255,.55);font-size:.82rem}
+  .trust span{display:inline-flex;align-items:center;gap:7px}
+  .trust b{color:#fff;font-weight:600}
+  .stat-badge{position:relative;z-index:2}
+
+  /* ---- Reusables de secció ---- */
+  section{padding:110px 0}
+  .kicker{font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .dark .kicker{color:var(--gold)}
+  h2{font-size:var(--fs-h2);line-height:1.02;letter-spacing:-.02em;font-weight:600;color:var(--navy);margin:18px 0 20px;text-wrap:balance}
+  .dark h2{color:#fff}
+  .sub{font-size:1.08rem;line-height:1.6;color:var(--text-m);max-width:62ch;text-wrap:pretty}
+  .dark .sub{color:rgba(255,255,255,.7)}
+  section.dark{background:var(--navy)}
+  section.dark-alt{background:var(--navy2)}
+  section.light{background:var(--cream)}
+  section.paper{background:var(--paper)}
+
+  .grid2{display:grid;grid-template-columns:1fr;gap:44px;align-items:center}
+  @media(min-width:900px){.grid2{grid-template-columns:1.05fr .95fr}}
+  .grid3{display:grid;gap:22px;grid-template-columns:1fr}
+  @media(min-width:760px){.grid3{grid-template-columns:repeat(3,1fr)}}
+
+  /* ---- Reveal ---- */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .rv.in{opacity:1;transform:none}
+
+  /* ---- Pain cards ---- */
+  .card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .card h3{color:#fff;font-size:1.28rem;font-weight:600;margin:16px 0 10px}
+  .card p{color:rgba(255,255,255,.68);font-size:.98rem;line-height:1.6}
+  .card .ico{width:46px;height:46px;border-radius:12px;background:rgba(231,196,125,.12);color:var(--gold);display:grid;place-items:center;font-size:22px}
+
+  /* ---- Cost / FOMO ---- */
+  .cost-grid{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:860px){.cost-grid{grid-template-columns:repeat(3,1fr)}}
+  .cost{background:var(--cream2);border:1px solid var(--line-d);border-radius:20px;padding:34px 28px;position:relative;overflow:hidden}
+  .cost::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--orange)}
+  .cost .n{font-size:2.4rem;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+  .cost .n em{color:var(--orange2);font-style:normal}
+  .cost p{margin-top:10px;color:var(--text-m);font-size:.95rem;line-height:1.55}
+
+  /* ---- Method ---- */
+  .agent-flow{display:grid;gap:18px}
+  .flow-node{display:flex;gap:18px;align-items:flex-start;padding:24px 26px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px}
+  .flow-node .step{flex-shrink:0;width:40px;height:40px;border-radius:100px;display:grid;place-items:center;font-weight:700;color:var(--navy);background:var(--gold)}
+  .flow-node h3{color:#fff;font-size:1.12rem;font-weight:600;margin-bottom:6px}
+  .flow-node p{color:rgba(255,255,255,.66);font-size:.95rem;line-height:1.6}
+
+  /* ---- BPMN diagram ---- */
+  .bpmn{background:var(--cream2);border:1px solid var(--line-d);border-radius:22px;padding:34px;position:relative;overflow:hidden}
+  .bpmn svg{width:100%;height:auto;display:block}
+
+  /* ---- Steps timeline ---- */
+  .steps{display:grid;gap:14px}
+  .step-row{display:flex;gap:22px;align-items:flex-start;padding:26px 8px;border-bottom:1px solid var(--line-d)}
+  .step-row:last-child{border-bottom:none}
+  .step-num{flex-shrink:0;width:52px;height:52px;border-radius:14px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;font-size:1.2rem}
+  .step-row.darkp .step-num{background:var(--orange);color:#241503}
+  .step-row h3{color:var(--navy);font-size:1.3rem;font-weight:600;margin-bottom:6px}
+  .step-row p{color:var(--text-m);line-height:1.6;font-size:.99rem;max-width:62ch}
+  .dark .step-row{border-color:var(--line)}
+  .dark .step-row h3{color:#fff}
+  .dark .step-row p{color:rgba(255,255,255,.68)}
+
+  /* ---- Deliverables ---- */
+  .deliv{background:var(--cream2);border:1px solid var(--line-d);border-radius:18px;padding:28px}
+  .deliv .t{font-weight:700;color:var(--navy);font-size:1.05rem}
+  .deliv p{color:var(--text-m);font-size:.92rem;line-height:1.55;margin-top:8px}
+
+  /* ---- Example / dashboard mock ---- */
+  .dash{background:#0e2036;border:1px solid rgba(231,196,125,.25);border-radius:22px;padding:30px;color:#fff}
+  .dash .bar{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:720px){.dash .bar{grid-template-columns:repeat(3,1fr)}}
+  .dash .kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:20px}
+  .dash .kpi .lbl{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .dash .kpi .val{font-size:2rem;font-weight:700;margin-top:6px}
+  .dash .kpi .val b{color:var(--orange)}
+  .dash .meta{font-size:.84rem;color:rgba(255,255,255,.5);margin-top:20px}
+
+  /* ---- Objections ---- */
+  .qa{border:1px solid var(--line-d);border-radius:16px;margin-bottom:14px;overflow:hidden;background:var(--cream2)}
+  .qa summary{padding:22px 26px;font-weight:600;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary::after{content:"+";font-size:1.6rem;color:var(--orange2);line-height:1}
+  .qa[open] summary::after{content:"−"}
+  .qa .body{padding:0 26px 22px;color:var(--text-m);line-height:1.6}
+
+  /* ---- Final CTA ---- */
+  .final{position:relative;text-align:center;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;opacity:.55;background:radial-gradient(55% 60% at 50% 0%, rgba(255,153,0,.22), transparent 65%)}
+  .final .wrap{position:relative;z-index:2}
+
+  footer{padding:40px 0 46px;background:var(--navy);border-top:1px solid var(--line);color:rgba(255,255,255,.5);font-size:.88rem}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo"><span class="mark">S</span><span>SolutionPartner<small>AI Strategy &amp; Automation</small></span></a>
+    <div class="nav-links">
+      <a href="#dolor">El cost de no fer-ho</a>
+      <a href="#metode">El mètode</a>
+      <a href="#passos">Com funciona</a>
+      <a href="#resultat">Què rebràs</a>
+    </div>
+    <a href="#demana" class="btn btn-orange nav-cta">Demana la teva auditoria</a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<header id="top" class="hero">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <span class="eyebrow">Auditoria de grau consultora · estil KPMG · Deloitte</span>
+      <h1>Estàs perdent diners <span class="serif">cada dia</span> que ningú no mira com funciona el teu negoci.</h1>
+      <p class="lead">Et demostrem, amb xifres i evidències, què deixa de guanyar la teva empresa — i et deixem un pla tangible per recuperar-ho. Una auditoria seriosa, amb investigació real del teu sector, al nivell de les grans consultores internacionals.</p>
+      <div class="actions">
+        <a href="#demana" class="btn btn-orange btn-lg">Demana la teva auditoria →</a>
+        <a href="#metode" class="btn btn-ghost btn-lg">Vegeu el mètode</a>
+      </div>
+      <div class="trust">
+        <span>✓ <b>Rigor de consultora</b> amb fonts citades</span>
+        <span>✓ <b>Equip d’agents d’IA</b> que investiguen a les millors fonts del món</span>
+        <span>✓ <b>Pla de retorn</b>, no un informe per arxivar</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ PAIN / DOLOR ══════════ -->
+<section id="dolor" class="light">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px">
+      <span class="kicker">Ho reconeixes?</span>
+      <h2>El teu negoci funciona. Però a quin preu?</h2>
+      <p class="sub">Quasi cap PIME no és conscient del que li costa, cada mes, el que fa "com sempre". Aquests són els símptomes que més diners es mengen en silenci.</p>
+    </div>
+    <div class="grid3 rv" style="margin-top:46px">
+      <div class="card" style="background:var(--cream2);border-color:var(--line-d)"><div class="ico" style="color:var(--orange2);background:rgba(255,153,0,.12)">€</div><h3 style="color:var(--navy)">Processos manuals</h3><p style="color:var(--text-m)">Feines repetitives que algú fa a mà setmana rere setmana, amb errors i sense que ningú arribi a mesurar-les.</p></div>
+      <div class="card" style="background:var(--cream2);border-color:var(--line-d)"><div class="ico" style="color:var(--orange2);background:rgba(255,153,0,.12)">⇄</div><h3 style="color:var(--navy)">Dades escampades</h3><p style="color:var(--text-m)">La informació viu a deu llocs: la web, el correu, un Excel, un paper. Ningú la connecta, així que cap decisió es basa en cap dada real.</p></div>
+      <div class="card" style="background:var(--cream2);border-color:var(--line-d)"><div class="ico" style="color:var(--orange2);background:rgba(255,153,0,.12)">✕</div><h3 style="color:var(--navy)">Oportunitats que fuixen</h3><p style="color:var(--text-m)">Clients que es perden, repeticions que no es conreen, hores "perdudes" en gestió que ningú no comptabilitza.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COST OF INACTION / FOMO ══════════ -->
+<section class="paper">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px">
+      <span class="kicker">La pregunta incòmoda</span>
+      <h2>Quant et costa, cada mes, no saber-ho?</h2>
+      <p class="sub">Cada un d'aquests és un número que pots no estar veient a cap pantalla. La nostra feina és fer-los visibles i posar-los en euros.</p>
+    </div>
+    <div class="cost-grid" style="margin-top:44px">
+      <div class="cost rv"><div class="n">≈<em>1.200 €/mes</em></div><p>Hores perdudes en tasques manuals que una màquina podria fer soles, reconvertides en euros.</p></div>
+      <div class="cost rv"><div class="n">≈<em>1.900 €/mes</em></div><p>Clients que marxen al competidor simplement perquè ningú no els fa el seguiment.</p></div>
+      <div class="cost rv"><div class="n">≈<em>2.400 €/mes</em></div><p>Margin i ingressos que no es capturen perquè cap dada està connectada ni es mesura.</p></div>
+    </div>
+    <p class="rv" style="margin-top:30px;color:var(--text-m);font-size:.9rem">Exemples il·lustratius del tipus de números que una auditoria posa sobre la taula en el teu cas concret. Cada empresa és diferent; la nostra feina és calcular-ho per a la teva.</p>
+  </div>
+</section>
+
+<!-- ══════════ THE METHOD (agents) ══════════ -->
+<section id="metode" class="dark">
+  <div class="wrap">
+    <div class="rv" style="max-width:820px">
+      <span class="kicker">Com ho fem</span>
+      <h2>Un equip d’intel·ligències que investiga el teu món. <span class="serif" style="color:var(--gold)">Un director que ho resumeix tot.</span></h2>
+      <p class="sub">No et donem un llistat genèric. Muntem un <b style="color:#fff">equip d’agents d’IA especialitzats</b> —cadascun dedicat a una peça del teu negoci— supervisats per un <b style="color:#fff">agent director</b> que ho coordina i ho contrasta amb les millors fonts d’internet i del món.</p>
+    </div>
+    <div class="agent-flow" style="margin-top:46px">
+      <div class="flow-node rv"><div class="step">1</div><div><h3>Agents d’investigació per àrea</h3><p>Un equip d’agents es desplega en paral·lel: un es capbussa al teu sector, un altre als teus competidors reals, un altre als benchmarks internacionals de la teva indústria, un altre a quines eines i automatitzacions es fan servir avui al món.</p></div></div>
+      <div class="flow-node rv"><div class="step">2</div><div><h3>Només autoritat, sempre citada</h3><p>Cada dada es contrasta amb les millors fonts: analistes internacionals (Gartner, IDC, Forrester), grans consultores (McKinsey, Deloitte, KPMG), instituts estadístics i associacions del teu sector. Res no entra a l’informe sense origen, com fan les consultores de primer nivell.</p></div></div>
+      <div class="flow-node rv"><div class="step">3</div><div><h3>L’agent director ho posa tot en ordre</h3><p>Un intel·ligència central supervisa l’equip, encreua les troballes amb les teves dades internes i en treu un judici consultor: on ets, què et falta i què t’has de treballar primer.</p></div></div>
+    </div>
+    <p class="rv" style="margin-top:34px;color:rgba(255,255,255,.55);font-size:.9rem;max-width:70ch">És aquest mateix rigor que aplicaria una gran consultoria — però amb la velocitat, la profunditat i el tracte que només una empresa centrada al teu cas pot oferir.</p>
+  </div>
+</section>
+
+<!-- ══════════ BPMN / PROCESSOS ══════════ -->
+<section class="dark-alt">
+  <div class="wrap">
+    <div class="rv" style="max-width:820px">
+      <span class="kicker">Els teus processos, al descobert</span>
+      <h2>Mapem com funciona la teva empresa <span class="serif" style="color:var(--gold)">i hi trobem les falles.</span></h2>
+      <p class="sub">Dibuixem els teus processos amb <b style="color:#fff">BPMN</b> —el llenguatge internacional estàndard dels processos de negoci que fan servir les grans consultores. Així cada pas, cada tasca manual i cada coll d’ampolla es fa visible.</p>
+    </div>
+    <div class="bpmn rv" style="margin-top:46px">
+      <svg viewBox="0 0 880 300" role="img" aria-label="Diagrama BPMN simplificat d'un procés amb una falla detectada">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B1D32"/></marker>
+          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e8890c"/></marker>
+        </defs>
+        <!-- start -->
+        <ellipse cx="70" cy="150" rx="26" ry="26" fill="none" stroke="#0B1D32" stroke-width="2.5"/>
+        <line x1="96" y1="150" x2="150" y2="150" stroke="#0B1D32" stroke-width="2" marker-end="url(#ar)"/>
+        <!-- task: rep predis -> factura manual -->
+        <rect x="150" y="116" width="150" height="68" rx="12" fill="#E7C47D" stroke="#0B1D32" stroke-width="2"/>
+        <text x="225" y="148" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#14243A" font-weight="600">Petició / comanda</text>
+        <line x1="300" y1="150" x2="356" y2="150" stroke="#0B1D32" stroke-width="2" marker-end="url(#ar)"/>
+        <!-- manual task (destaquem la falla) -->
+        <rect x="356" y="116" width="150" height="68" rx="12" fill="#fff" stroke="#e8890c" stroke-width="3"/>
+        <text x="431" y="142" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#14243A" font-weight="600">Facturació</text>
+        <text x="431" y="162" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#e8890c" font-weight="700">a MÀ · 6h/set</text>
+        <line x1="506" y1="150" x2="562" y2="150" stroke="#e8890c" stroke-width="2" marker-end="url(#arw)"/>
+        <rect x="562" y="116" width="150" height="68" rx="12" fill="#0B1D32" stroke="#0B1D32" stroke-width="2"/>
+        <text x="637" y="148" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#E7C47D" font-weight="600">Automatitzat</text>
+        <line x1="712" y1="150" x2="786" y2="150" stroke="#0B1D32" stroke-width="2" marker-end="url(#ar)"/>
+        <ellipse cx="816" cy="150" rx="26" ry="26" fill="#0B1D32"/>
+        <text x="816" y="155" text-anchor="middle" font-family="Space Grotesk" font-size="16" fill="#E7C47D">✓</text>
+        <!-- callout/falla -->
+        <rect x="356" y="196" width="300" height="66" rx="12" fill="#FFF4E6" stroke="#e8890c" stroke-width="1.5"/>
+        <text x="506" y="220" text-anchor="middle" font-family="Space Grotesk" font-size="12.5" fill="#14243A" font-weight="700">FALLA DETECTADA a la facturació manual</text>
+        <text x="506" y="242" text-anchor="middle" font-family="Space Grotesk" font-size="11.5" fill="#5c6b80">Coll d’ampolla: 6 h/setmana + 2 errors/mes de mitjana estàndard</text>
+      </svg>
+      <p class="meta" style="margin-top:16px;font-size:.9rem;color:#5c6b80">Diagrama simplificat i il·lustratiu. A l’auditoria, els teus processos reals es representen així i cada falla es quantifica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STEPS ══════════ -->
+<section id="passos" class="light">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px">
+      <span class="kicker">Com funciona</span>
+      <h2>En 5 setmanes saps exactament on i quant pots estalviar.</h2>
+    </div>
+    <div class="steps" style="margin-top:40px">
+      <div class="step-row darkp rv"><div class="step-num">1</div><div><h3>T’escoltem</h3><p>Una conversa per entendre el teu negoci, com treballes, què et fa perdre temps i què et preocupa. Sense pressa i sense pressió.</p></div></div>
+      <div class="step-row rv"><div class="step-num">2</div><div><h3>Recollim les dades</h3><p>Un qüestionari pensat per no fer-te perdre el temps: et guiem pas a pas per les dades que fan falta per a una anàlisi seriosa.</p></div></div>
+      <div class="step-row rv"><div class="step-num">3</div><div><h3>L’equip d’agents investiga</h3><p>Els agents d’IA exploren el teu sector, els teus competidors i els benchmarks del món, i l’agent director ho contrasta tot amb fonts d’autoritat.</p></div></div>
+      <div class="step-row rv"><div class="step-num">4</div><div><h3>Anàlisi profunda</h3><p>DAFO, maduresa digital en sis dimensions, findings d’auditoria (condició → causa → efecte → recomanació) i mapa de processos amb les falles quantificades.</p></div></div>
+      <div class="step-row rv"><div class="step-num">5</div><div><h3>Informe que impressiona</h3><p>Reps un paquet complet: informe web interactiu, PDF, Excel de dades, resum d’una pàgina i la presentació per al teu consell.</p></div></div>
+      <div class="step-row rv"><div class="step-num">6</div><div><h3>Pla de retorn</h3><p>Un pla prioritzat 30/60/90 dies amb què fer, qui ho fa, quan i —el més important— <b>quant et retorna cada acció</b>.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ RESULT / EXEMPLE ══════════ -->
+<section id="resultat">
+  <div class="wrap">
+    <div class="grid2">
+      <div class="rv">
+        <span class="kicker">Què rebràs</span>
+        <h2 style="color:#fff">Un paquet digne d’una gran consultoria.</h2>
+        <p class="sub">No et venem "un PDF". Et lliurem un conjunt d’entregables pensats perquè tu —i el teu consell— ho entengueu tot en cinc minuts i us en quedeu amb el retorn.</p>
+        <ul style="margin-top:26px;display:grid;gap:14px;color:rgba(255,255,255,.8)">
+          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Informe web interactiu &amp; autocontingut</li>
+          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> PDF de l’informe, imprimible i professional</li>
+          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Excel amb totes les dades i el benchmarking</li>
+          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Resum d’una pàgina per portar al consell</li>
+          <li style="display:flex;gap:10px"><span style="color:var(--gold)">✓</span> Model d’impacte jugable: canvia les teves xifres i veu el retorn en directe</li>
+        </ul>
+      </div>
+      <div class="rv">
+        <div class="dash">
+          <div style="font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:18px">Exemple del tipus de resultat · empresa de serveis de 14 persones</div>
+          <div class="bar">
+            <div class="kpi"><div class="lbl">Hores/setmana recuperades</div><div class="val">11 <b>h</b></div></div>
+            <div class="kpi"><div class="lbl">Estalvi estimat/any</div><div class="val">+<b>18.400 €</b></div></div>
+            <div class="kpi"><div class="lbl">Termini per pagar-se sola</div><div class="val"><b>2,3</b> mesos</div></div>
+          </div>
+          <div class="meta">Exemple il·lustratiu de com es presenten els resultats. Els teus números es calculen a partir de les teves dades reals.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OBJECTIONS / FAQ ══════════ -->
+<section class="paper">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px">
+      <span class="kicker">Ben preguntat</span>
+      <h2>El que et deus estar preguntant.</h2>
+    </div>
+    <div style="margin-top:36px;max-width:820px">
+      <details class="qa rv"><summary>Val la pena? Per què no és simplement "car"?</summary><div class="body">Perquè no et venem un informe: et venem un <b>retorn demostrat</b>. Sortiràs de l’auditoria sabent exactament quines accions et recuperen diners, quantes hores deixes de perdre i en quin termini es paga sola cada millora. Si en algun moment veus que no hi ha retorn, t’ho diem — no és el nostre estil vendre fum.</div></details>
+      <details class="qa rv"><summary>Per què vosaltres i no una gran consultoria?</summary><div class="body">Apliquem el mateix rigor que KPMG, Deloitte o McKinsey — metodologia, fonts d’autoritat, findings d’auditoria i mapes de processos en BPMN. Però ho fem amb la velocitat i el tracte directe d’un equip centrat al teu cas, no amb una auditoria de desenes de milers d’euros ni amb rotacions de consultors.</div></details>
+      <details class="qa rv"><summary>Quantes hores em fa perdre?</summary><div class="body">Molt poques. Un qüestionari guiat de menys de mitja hora, una conversa inicial, i nosaltres fem la resta. Tua feina és dirigir i aprovar, no entrar en tecnicismes.</div></details>
+      <details class="qa rv"><summary>I si no som prou grans?</summary><div class="body">L’auditoria està pensada per a pimes — és just allà on hi ha més diners amagats en processos manuals i dades escampades. I alhora, la metodologia és prou profunda perquè una empresa més gran també hi encaixi.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FINAL CTA (FOMO) ══════════ -->
+<section id="demana" class="dark final">
+  <div class="wrap">
+    <div class="rv">
+      <span class="kicker">Cada mes que ho ajornes et costa diners</span>
+      <h2 style="max-width:22ch;margin-left:auto;margin-right:auto">El teu sector ja no espera. <span class="serif" style="color:var(--gold)">Ni els teus competidors.</span></h2>
+      <p class="sub" style="margin:22px auto 34px;max-width:56ch">Descobreix quant pot estalviar la teva empresa i surt amb un pla clar. Places limitades per trimestre per garantir la profunditat de cada auditoria.</p>
+      <a href="mailto:contact@solutionproject.ai?subject=Demana%20la%20meva%20auditoria" class="btn btn-orange btn-lg" style="font-size:1.18rem;padding:20px 46px">Demana la teva auditoria →</a>
+      <div style="margin-top:26px;color:rgba(255,255,255,.5);font-size:.9rem">Resposta en 24 h laborables · Sense compromís en el primer contacte</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 SolutionPartner.AI — AI Strategy &amp; Automation</div>
+    <div>Barcelona · Metodologia de grau consultora</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
