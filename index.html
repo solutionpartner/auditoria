@@ -633,5 +633,38 @@
   }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 </script>
+<div id="langbar" style="position:fixed;top:14px;right:14px;z-index:9999;display:flex;gap:4px;background:#0B1D32;border:1px solid #E7C47D;border-radius:999px;padding:5px 8px;box-shadow:0 6px 20px rgba(0,0,0,.35)"><button data-lang="ca" style="border:0;border-radius:999px;padding:3px 12px;font:700 12px/1 Space Grotesk,Segoe UI;cursor:pointer;background:#E7C47D;color:#0B1D32">CA</button><button data-lang="es" style="border:0;border-radius:999px;padding:3px 12px;font:700 12px/1 Space Grotesk,Segoe UI;cursor:pointer;background:transparent;color:#E7C47D">ES</button><button data-lang="en" style="border:0;border-radius:999px;padding:3px 12px;font:700 12px/1 Space Grotesk,Segoe UI;cursor:pointer;background:transparent;color:#E7C47D">EN</button></div>
+<script>
+(function(){
+var D={
+  "Ho reconeixes?":["¿Lo reconoces?","Do you recognise it?"]
+  "La pregunta incòmoda":["La pregunta incómoda","The uncomfortable question"]
+  "Com ho fem":["Cómo lo hacemos","How we do it"]
+  "Els teus processos, al descobert":["Tus procesos, al desvelo","Your processes, laid bare"]
+  "Com funciona":["Cómo funciona","How it works"]
+  "Què rebràs":["Qué recibirás","What you get"]
+  "Ben preguntat":["Bien preguntado","Well asked"]
+  "Cada mes que ho ajornes et costa diners":["Cada mes que lo pospones te cuesta dinero","Every month you delay it costs you money"]
+  "El teu negoci funciona. Però a quin preu?":["Tu negocio funciona. ¿Pero a qué precio?","Your business works. But at what price?"]
+  "Quant et costa, cada mes, no saber-ho?":["¿Cuánto te cuesta, cada mes, no saberlo?","How much does it cost you, each month, not knowing?"]
+  "Un equip d’intel·ligències que investiga el teu món.":["Un equipo de inteligencias que investiga tu mundo.","A team of intelligences that investigates your world."]
+  "Mapejem els teus processos":["Mapeamos tus procesos","We map your processes"]
+  "En 5 setmanes saps exactament on i quant pots estalviar.":["En 5 semanas sabes exactamente dónde y cuánto puedes ahorrar.","In 5 weeks you know exactly where and how much you can save."]
+  "No són \"un document\". És un":["No son \"un documento\". Es un","It isn't \"a document\". It's a"]
+  "El que et deus estar preguntant.":["Lo que debes estar preguntándote.","What you're probably asking."]
+  "El teu sector ja no espera.":["Tu sector ya no espera.","Your industry is no longer waiting."]
+  "Inicia el diagnòstic":["Inicia el diagnóstico","Start the diagnosis"]
+  "Coneix el Business AI OS":["Conoce el Business AI OS","Discover the Business AI OS"]
+};
+var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+var nodes=[];var t;while((t=walker.nextNode())){if(t.nodeValue.trim().length>1)nodes.push(t);}
+function apply(l){
+  document.querySelectorAll('#langbar button').forEach(function(b){var on=b.dataset.lang===l;b.style.background=on?'#E7C47D':'transparent';b.style.color=on?'#0B1D32':'#E7C47D';});
+  var dict={ca:{},es:{},en:{}};Object.keys(D).forEach(function(k){dict.es[k]=D[k][0];dict.en[k]=D[k][1];});
+  nodes.forEach(function(n){var v=n.nodeValue;Object.keys(dict[l]||{}).forEach(function(k){if(dict[l][k]&&v.indexOf(k)!==-1)n.nodeValue=v.split(k).join(dict[l][k]);});});
+}
+document.querySelectorAll('#langbar button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang);});});
+})();
+</script>
 </body>
 </html>
