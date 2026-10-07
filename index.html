@@ -443,6 +443,58 @@
         </svg>
         <p class="pp-note"><b style="color:#c62828">Aquí hi perds vendes:</b> els desajustos d’estoc o et deixen sense producte (i el client s’estira) o t’acumulen més del compte. Amb el recompte sincronitzat en temps real s’acaben els trencaments.</p>
       </div>
+      <!-- === 04 Flux complex (gran empresa) === -->
+      <div class="proc-panel rv">
+        <div class="pp-top">
+          <div style="display:flex;align-items:center;gap:16px"><span class="pp-num">04</span><h3>I també sabem gestionar grans fluxos amb grans volums de dades.</h3></div>
+          <span class="badge-inef" style="background:#FDF6E8;color:#9a7b2e;border-color:#e7c47d">Flux complex · branques + loops</span>
+        </div>
+        <svg viewBox="0 0 1180 540" role="img" aria-label="Procés complex amb decisió, bucle de correcció i branques paral·leles">
+          <defs>
+            <marker id="c4n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B1D32"/></marker>
+            <marker id="c4g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E7C47D"/></marker>
+          </defs>
+          <ellipse cx="55" cy="270" rx="24" ry="24" fill="none" stroke="#0B1D32" stroke-width="2.6"/>
+          <line x1="79" y1="270" x2="102" y2="270" class="flow-anim" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <rect x="102" y="238" width="200" height="64" rx="12" fill="#EFD08C" stroke="#0B1D32" stroke-width="1.6"/>
+          <text x="202" y="266" text-anchor="middle" font-family="Space Grotesk" font-size="15" fill="#14243A" font-weight="600">Captació i</text>
+          <text x="202" y="285" text-anchor="middle" font-family="Space Grotesk" font-size="15" fill="#14243A" font-weight="600">validació</text>
+          <line x1="302" y1="270" x2="326" y2="270" class="flow-anim" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <polygon points="326,242 358,270 326,298 294,270" fill="#FDFBF5" stroke="#0B1D32" stroke-width="2"/>
+          <text x="326" y="272" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#14243A" font-weight="700">Dades</text>
+          <text x="326" y="286" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#14243A" font-weight="700">vàlides?</text>
+          <path d="M326,298 V430 H202 V302" class="flow-anim" fill="none" stroke="#E7C47D" stroke-width="2.4" stroke-dasharray="9 7" marker-end="url(#c4g)"/>
+          <text x="300" y="422" text-anchor="end" font-family="Space Grotesk" font-size="12" fill="#9a7b2e" font-weight="700">No · revisar</text>
+          <line x1="358" y1="270" x2="420" y2="270" class="flow-anim" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <text x="386" y="258" text-anchor="middle" font-family="Space Grotesk" font-size="13" fill="#14243A" font-weight="700">Sí</text>
+          <polygon points="420,242 452,270 420,298 388,270" fill="#E7C47D" stroke="#0B1D32" stroke-width="2"/>
+          <text x="420" y="277" text-anchor="middle" font-family="Space Grotesk" font-size="15" fill="#14243A" font-weight="800">∥</text>
+          <path d="M420,242 V170 H520" class="flow-anim" fill="none" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <rect x="520" y="138" width="220" height="64" rx="12" fill="#0B1D32" stroke="#0B1D32" stroke-width="1.6"/>
+          <text x="630" y="163" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#E7C47D" font-weight="600">Assignació d’estoc</text>
+          <text x="630" y="183" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#E7C47D">i magatzem</text>
+          <line x1="740" y1="170" x2="790" y2="170" class="flow-anim" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <rect x="790" y="138" width="210" height="64" rx="12" fill="#EFD08C" stroke="#0B1D32" stroke-width="1.6"/>
+          <text x="895" y="167" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#14243A" font-weight="600">Reserva i picking</text>
+          <text x="895" y="186" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#14243A">en magatzem</text>
+          <path d="M420,298 V370 H520" class="flow-anim" fill="none" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <rect x="520" y="338" width="220" height="64" rx="12" fill="#0B1D32" stroke="#0B1D32" stroke-width="1.6"/>
+          <text x="630" y="363" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#E7C47D" font-weight="600">Càlcul de preus,</text>
+          <text x="630" y="383" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#E7C47D">descomptes i impostos</text>
+          <line x1="740" y1="370" x2="790" y2="370" class="flow-anim" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <rect x="790" y="338" width="210" height="64" rx="12" fill="#EFD08C" stroke="#0B1D32" stroke-width="1.6"/>
+          <text x="895" y="367" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#14243A" font-weight="600">Validació</text>
+          <text x="895" y="386" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#14243A">comercial</text>
+          <path d="M1000,170 C1020,170 1020,250 1040,270" class="flow-anim" fill="none" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <path d="M1000,370 C1020,370 1020,290 1040,270" class="flow-anim" fill="none" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <polygon points="1040,242 1072,270 1040,298 1008,270" fill="#E7C47D" stroke="#0B1D32" stroke-width="2"/>
+          <text x="1040" y="277" text-anchor="middle" font-family="Space Grotesk" font-size="15" fill="#14243A" font-weight="800">∥</text>
+          <line x1="1072" y1="270" x2="1095" y2="270" class="flow-anim" stroke="#0B1D32" stroke-width="2.4" marker-end="url(#c4n)"/>
+          <ellipse cx="1125" cy="270" rx="24" ry="24" fill="#0B1D32"/>
+          <text x="1125" y="276" text-anchor="middle" font-family="Space Grotesk" font-size="15" fill="#E7C47D" font-weight="700">✓</text>
+        </svg>
+        <p class="pp-note"><b>També sabem això:</b> decisions amb <b>bucle de correcció</b>, <b>branques en paral·lel</b> i punts d’unió — mantenim estables els processos d’empreses amb grans volums de dades, fins i tot més enllà de la PIME.</p>
+      </div>
     </div>
 
     <div class="bpmn-legend rv">
