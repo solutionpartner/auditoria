@@ -60,6 +60,36 @@
   .nav-cta{display:none}
   @media(min-width:900px){.nav-cta{display:inline-flex}}
 
+  /* ---- Navbar millorada (navbar.gallery) -- SP-NAV-START ---- */
+  /* links desktop amb subratllat animat */
+  .nav-links a{position:relative}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--gold);transition:width .28s var(--ease)}
+  .nav-links a:hover::after{width:100%}
+  /* botó hamburguesa (mòbil) */
+  .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:9px;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:12px;cursor:pointer;z-index:70}
+  .nav-burger span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .3s var(--ease),opacity .3s,background .3s}
+  /* panell mòbil fullscreen */
+  .nav-overlay{position:fixed;inset:0;z-index:60;background:rgba(11,29,50,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 32px;gap:6px;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+  .nav-overlay.open{opacity:1;pointer-events:auto}
+  .nav-overlay a{color:#fff;font-size:2rem;font-weight:600;padding:14px 0;opacity:0;transform:translateY(18px);transition:opacity .4s var(--ease),transform .4s var(--ease),color .2s;border-bottom:1px solid rgba(255,255,255,.09)}
+  .nav-overlay a:hover{color:var(--gold)}
+  .nav-overlay.open a{opacity:1;transform:none}
+  .nav-overlay.open a:nth-child(1){transition-delay:.08s}
+  .nav-overlay.open a:nth-child(2){transition-delay:.14s}
+  .nav-overlay.open a:nth-child(3){transition-delay:.20s}
+  .nav-overlay.open a:nth-child(4){transition-delay:.26s}
+  .nav-overlay .n-cta{margin-top:26px;transition-delay:.34s}
+  .nav-overlay .n-foot{position:absolute;bottom:40px;left:32px;right:32px;font-size:.8rem;color:rgba(255,255,255,.45)}
+  body.nav-open{overflow:hidden}
+  @media(max-width:899px){
+    .nav-links{display:none}
+    .nav-burger{display:flex}
+  }
+  /* estat hamburguesa oberta (X) */
+  .nav-burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-burger.active span:nth-child(2){opacity:0}
+  .nav-burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  /* -- SP-NAV-END ---- */
   /* ---- Botons ---- */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
@@ -270,8 +300,17 @@
       <a href="#resultat">Què rebràs</a>
     </div>
     <a href="https://solutionpartner.github.io/questionari-1b/" target="_blank" rel="noopener" class="btn btn-orange nav-cta">Inicia el diagnòstic</a>
+    <button class="nav-burger" id="navBurger" aria-label="Obre el menú" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+  <a href="#dolor">El cost de no fer-ho</a>
+  <a href="#metode">El mètode</a>
+  <a href="#passos">Com funciona</a>
+  <a href="#resultat">Què rebràs</a>
+  <a href="https://solutionpartner.github.io/questionari-1b/" target="_blank" rel="noopener" class="btn btn-orange n-cta">Inicia el diagnòstic →</a>
+  <div class="n-foot">SolutionPartner.AI · Auditoria d’IA i Dades</div>
+</div>
 
 <!-- ══════════ HERO ══════════ -->
 <header id="top" class="hero">
@@ -805,6 +844,25 @@ document.querySelectorAll('#langbar button').forEach(function(b){b.addEventListe
   requestAnimationFrame(frame);
 })();
 /* -- SP-PARTICLES-END -- */
+</script>
+
+<script>
+/* -- SP-NAV-START -- menú hamburguesa mòbil */
+(function(){
+  var burger=document.getElementById('navBurger'); var ov=document.getElementById('navOverlay');
+  if(!burger||!ov) return;
+  function toggle(force){
+    var open = (typeof force!=='undefined')?force:!ov.classList.contains('open');
+    ov.classList.toggle('open',open); burger.classList.toggle('active',open);
+    document.body.classList.toggle('nav-open',open);
+    burger.setAttribute('aria-expanded', open?'true':'false');
+    ov.setAttribute('aria-hidden', open?'false':'true');
+  }
+  burger.addEventListener('click',function(){toggle();});
+  ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){toggle(false);});});
+  window.addEventListener('resize',function(){ if(window.innerWidth>=900) toggle(false); });
+})();
+/* -- SP-NAV-END -- */
 </script>
 </body>
 </html>
