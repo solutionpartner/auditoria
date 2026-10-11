@@ -86,6 +86,17 @@
     radial-gradient(52% 46% at 78% 18%, rgba(231,196,125,.22), transparent 62%),
     radial-gradient(45% 42% at 12% 88%, rgba(30,58,94,.85), transparent 68%)}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
+
+  /* ---- Aurora glow (Aceternity-style) -- SP-AURORA-START ---- */
+  .hero .glow{position:absolute;z-index:1;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.65;will-change:transform}
+  .hero .glow.g1{width:46vw;height:46vw;left:-8vw;top:-6vh;background:radial-gradient(circle,rgba(231,196,125,.38),transparent 62%);animation:drift1 22s ease-in-out infinite alternate}
+  .hero .glow.g2{width:40vw;height:40vw;right:-6vw;bottom:2vh;background:radial-gradient(circle,rgba(30,58,94,.9),transparent 60%);animation:drift2 26s ease-in-out infinite alternate}
+  .hero .glow.g3{width:30vw;height:30vw;left:34vw;top:38vh;background:radial-gradient(circle,rgba(255,153,0,.22),transparent 65%);animation:drift3 30s ease-in-out infinite alternate}
+  @keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(7vw,4vh,0) scale(1.12)}}
+  @keyframes drift2{from{transform:translate3d(0,0,0) scale(1.05)}to{transform:translate3d(-6vw,-5vh,0) scale(1)}}
+  @keyframes drift3{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-5vw,5vh,0) scale(1.15)}}
+  .hero .spot{position:absolute;inset:0;z-index:1;opacity:.5;pointer-events:none;background:radial-gradient(480px circle at var(--mx,50%) var(--my,20%),rgba(231,196,125,.16),transparent 55%)}
+  /* -- SP-AURORA-END ---- */
   .hero-grid{position:relative;z-index:2;display:grid;gap:46px;padding:130px 0 90px}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(231,196,125,.4);padding:8px 14px;border-radius:100px}
   .hero h1{color:#fff;font-size:var(--fs-display);line-height:.98;letter-spacing:-.025em;font-weight:600;margin:28px 0 22px;text-wrap:balance}
@@ -260,6 +271,7 @@
 <!-- ══════════ HERO ══════════ -->
 <header id="top" class="hero">
   <img src="hero-bg.jpg" class="hero-img" alt="" aria-hidden="true">
+  <div class="glow g1" aria-hidden="true"></div><div class="glow g2" aria-hidden="true"></div><div class="glow g3" aria-hidden="true"></div><div class="spot" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="rv">
       <span class="eyebrow">Auditoria de grau consultora · estil KPMG · Deloitte</span>
@@ -749,6 +761,21 @@ function apply(l){
 }
 document.querySelectorAll('#langbar button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang);});});
 })();
+</script>
+
+<script>
+/* -- SP-AURORA-START -- spotlight que segueix el ratoli dins del hero */
+(function(){
+  var hero=document.querySelector('.hero'); if(!hero) return;
+  var spot=hero.querySelector('.spot'); if(!spot) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    var mx=((e.clientX-r.left)/r.width)*100, my=((e.clientY-r.top)/r.height)*100;
+    spot.style.setProperty('--mx', mx+'%'); spot.style.setProperty('--my', my+'%');
+  });
+})();
+/* -- SP-AURORA-END -- */
 </script>
 </body>
 </html>
