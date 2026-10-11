@@ -87,15 +87,20 @@
     radial-gradient(45% 42% at 12% 88%, rgba(30,58,94,.85), transparent 68%)}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
 
-  /* ---- Aurora glow (Aceternity-style) -- SP-AURORA-START ---- */
-  .hero .glow{position:absolute;z-index:1;border-radius:50%;filter:blur(clamp(26px,6vw,72px));pointer-events:none;will-change:transform}
-  .hero .glow.g1{width:60vw;height:60vw;min-width:260px;min-height:260px;left:-12vw;top:-8vh;background:radial-gradient(circle,rgba(231,196,125,.55),rgba(231,196,125,.18) 46%,transparent 72%);animation:drift1 22s ease-in-out infinite alternate}
-  .hero .glow.g2{width:56vw;height:56vw;min-width:240px;min-height:240px;right:-10vw;bottom:0;background:radial-gradient(circle,rgba(38,72,116,.95),rgba(30,58,94,.55) 48%,transparent 74%);animation:drift2 26s ease-in-out infinite alternate}
-  .hero .glow.g3{width:34vw;height:34vw;min-width:150px;min-height:150px;left:30vw;top:34vh;background:radial-gradient(circle,rgba(255,153,0,.42),rgba(255,153,0,.14) 50%,transparent 72%);animation:drift3 30s ease-in-out infinite alternate}
-  @keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(7vw,4vh,0) scale(1.12)}}
-  @keyframes drift2{from{transform:translate3d(0,0,0) scale(1.05)}to{transform:translate3d(-6vw,-5vh,0) scale(1)}}
-  @keyframes drift3{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-5vw,5vh,0) scale(1.15)}}
-  .hero .spot{position:absolute;inset:0;z-index:1;opacity:.5;pointer-events:none;background:radial-gradient(480px circle at var(--mx,50%) var(--my,20%),rgba(231,196,125,.16),transparent 55%)}
+  /* ---- Aurora + particles (Aceternity-style) -- SP-AURORA-START ---- */
+  .hero .gspin{position:absolute;z-index:1;left:50%;top:48%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;border-radius:50%;opacity:.55;filter:blur(46px);pointer-events:none;
+    background:conic-gradient(from 0deg,
+      rgba(231,196,125,.0),rgba(231,196,125,.34) 12%,rgba(255,153,0,.10) 22%,transparent 32%,
+      rgba(38,72,116,.92) 48%,transparent 60%,
+      rgba(231,196,125,.22) 74%,transparent 84%,rgba(231,196,125,.0));
+    animation:gspin 16s linear infinite}
+  @keyframes gspin{to{transform:rotate(360deg)}}
+  .hero h1 .serif{background:linear-gradient(100deg,var(--gold) 20%,#fff6dd 40%,var(--gold) 60%);
+    background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:shimmer 4.5s ease-in-out infinite}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  #pfloat{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:.85}
+  .hero .spot{position:absolute;inset:0;z-index:2;opacity:.5;pointer-events:none;background:radial-gradient(480px circle at var(--mx,50%) var(--my,20%),rgba(231,196,125,.16),transparent 55%)}
   /* -- SP-AURORA-END ---- */
   .hero-grid{position:relative;z-index:2;display:grid;gap:46px;padding:130px 0 90px}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(231,196,125,.4);padding:8px 14px;border-radius:100px}
@@ -270,7 +275,7 @@
 
 <!-- ══════════ HERO ══════════ -->
 <header id="top" class="hero">
-  <img src="hero-bg.jpg" class="hero-img" alt="" aria-hidden="true">
+  <img src="hero-bg.jpg" class="hero-img" alt="" aria-hidden="true"><canvas id="pfloat" aria-hidden="true"></canvas>
   <div class="glow g1" aria-hidden="true"></div><div class="glow g2" aria-hidden="true"></div><div class="glow g3" aria-hidden="true"></div><div class="spot" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="rv">
@@ -776,6 +781,30 @@ document.querySelectorAll('#langbar button').forEach(function(b){b.addEventListe
   });
 })();
 /* -- SP-AURORA-END -- */
+</script>
+
+<script>
+/* -- SP-PARTICLES-START -- petites llums que pugen pel hero */
+(function(){
+  var c=document.getElementById('pfloat'); if(!c) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var ctx=c.getContext('2d'); var dpr=window.devicePixelRatio||1; var W,H,P=[],NP=0;
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  size(); window.addEventListener('resize',size);
+  function init(){ var n=Math.round(Math.min(70,Math.max(30,W/22))); P=[]; NP=n;
+    for(var i=0;i<n;i++){P.push({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.8+0.6),s:Math.random()*0.5+0.2,o:Math.random()*0.5+0.25,c:Math.random()<0.7?'231,196,125':'255,153,0'})} }
+  init();
+  var last=0;
+  function frame(t){ requestAnimationFrame(frame); if(t-last<33)return; last=t;
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<NP;i++){var p=P[i]; p.y-=p.s; p.x+=Math.sin((t/900)+i)*0.25;
+      if(p.y<-6){p.y=H+6;p.x=Math.random()*W}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.2832);
+      ctx.fillStyle='rgba('+p.c+','+p.o.toFixed(2)+')';ctx.fill();}
+  }
+  requestAnimationFrame(frame);
+})();
+/* -- SP-PARTICLES-END -- */
 </script>
 </body>
 </html>
