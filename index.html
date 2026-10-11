@@ -88,10 +88,10 @@
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
 
   /* ---- Aurora glow (Aceternity-style) -- SP-AURORA-START ---- */
-  .hero .glow{position:absolute;z-index:1;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.65;will-change:transform}
-  .hero .glow.g1{width:46vw;height:46vw;left:-8vw;top:-6vh;background:radial-gradient(circle,rgba(231,196,125,.38),transparent 62%);animation:drift1 22s ease-in-out infinite alternate}
-  .hero .glow.g2{width:40vw;height:40vw;right:-6vw;bottom:2vh;background:radial-gradient(circle,rgba(30,58,94,.9),transparent 60%);animation:drift2 26s ease-in-out infinite alternate}
-  .hero .glow.g3{width:30vw;height:30vw;left:34vw;top:38vh;background:radial-gradient(circle,rgba(255,153,0,.22),transparent 65%);animation:drift3 30s ease-in-out infinite alternate}
+  .hero .glow{position:absolute;z-index:1;border-radius:50%;filter:blur(clamp(26px,6vw,72px));pointer-events:none;will-change:transform}
+  .hero .glow.g1{width:60vw;height:60vw;min-width:260px;min-height:260px;left:-12vw;top:-8vh;background:radial-gradient(circle,rgba(231,196,125,.55),rgba(231,196,125,.18) 46%,transparent 72%);animation:drift1 22s ease-in-out infinite alternate}
+  .hero .glow.g2{width:56vw;height:56vw;min-width:240px;min-height:240px;right:-10vw;bottom:0;background:radial-gradient(circle,rgba(38,72,116,.95),rgba(30,58,94,.55) 48%,transparent 74%);animation:drift2 26s ease-in-out infinite alternate}
+  .hero .glow.g3{width:34vw;height:34vw;min-width:150px;min-height:150px;left:30vw;top:34vh;background:radial-gradient(circle,rgba(255,153,0,.42),rgba(255,153,0,.14) 50%,transparent 72%);animation:drift3 30s ease-in-out infinite alternate}
   @keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(7vw,4vh,0) scale(1.12)}}
   @keyframes drift2{from{transform:translate3d(0,0,0) scale(1.05)}to{transform:translate3d(-6vw,-5vh,0) scale(1)}}
   @keyframes drift3{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-5vw,5vh,0) scale(1.15)}}
