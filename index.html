@@ -117,6 +117,17 @@
     radial-gradient(45% 42% at 12% 88%, rgba(30,58,94,.85), transparent 68%)}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);background-size:34px 34px}
 
+
+  /* ---- Animacions (cascade + tilt + parallax) -- SP-ANIM-START ---- */
+  .rn .rv,.grid2 .rv,.grid3 .rv{transition-delay:var(--cd,0s)!important}
+  .grid3>*:nth-child(1),.cost-grid>*:nth-child(1),.proc-list>*:nth-child(1){--cd:.05s}
+  .grid3>*:nth-child(2),.cost-grid>*:nth-child(2),.proc-list>*:nth-child(2){--cd:.15s}
+  .grid3>*:nth-child(3),.cost-grid>*:nth-child(3),.proc-list>*:nth-child(3){--cd:.25s}
+  .card{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 22px 44px -18px rgba(0,0,0,.4)}
+  .bg-img{will-change:transform}
+  /* -- SP-ANIM-END ---- */
+
   /* ---- Aurora + particles (Aceternity-style) -- SP-AURORA-START ---- */
   .hero .gspin{position:absolute;z-index:1;left:50%;top:48%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;border-radius:50%;opacity:.55;filter:blur(46px);pointer-events:none;
     background:conic-gradient(from 0deg,
@@ -359,9 +370,9 @@
       <p class="sub">Cada un d'aquests és un número que pots no estar veient a cap pantalla. La nostra feina és fer-los visibles i posar-los en euros.</p>
     </div>
     <div class="cost-grid" style="margin-top:44px">
-      <div class="cost rv"><div class="n">≈<em>1.200 €/mes</em></div><p>Hores perdudes en tasques manuals que una màquina podria fer soles, reconvertides en euros.</p></div>
-      <div class="cost rv"><div class="n">≈<em>1.900 €/mes</em></div><p>Clients que marxen al competidor simplement perquè ningú no els fa el seguiment.</p></div>
-      <div class="cost rv"><div class="n">≈<em>2.400 €/mes</em></div><p>Margin i ingressos que no es capturen perquè cap dada està connectada ni es mesura.</p></div>
+      <div class="cost rv"><div class="n">≈<em><b class="count" data-to="1200" data-suffix=" €/mes" style="font-style:inherit">1.200 €/mes</b></em></div><p>Hores perdudes en tasques manuals que una màquina podria fer soles, reconvertides en euros.</p></div>
+      <div class="cost rv"><div class="n">≈<em><b class="count" data-to="1900" data-suffix=" €/mes" style="font-style:inherit">1.900 €/mes</b></em></div><p>Clients que marxen al competidor simplement perquè ningú no els fa el seguiment.</p></div>
+      <div class="cost rv"><div class="n">≈<em><b class="count" data-to="2400" data-suffix=" €/mes" style="font-style:inherit">2.400 €/mes</b></em></div><p>Margin i ingressos que no es capturen perquè cap dada està connectada ni es mesura.</p></div>
     </div>
     <p class="rv" style="margin-top:30px;color:var(--text-m);font-size:.9rem">Exemples il·lustratius del tipus de números que una auditoria posa sobre la taula en el teu cas concret. Cada empresa és diferent; la nostra feina és calcular-ho per a la teva.</p>
   </div>
@@ -831,7 +842,7 @@ document.querySelectorAll('#langbar button').forEach(function(b){b.addEventListe
   function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
   size(); window.addEventListener('resize',size);
   function init(){ var n=Math.round(Math.min(70,Math.max(30,W/22))); P=[]; NP=n;
-    for(var i=0;i<n;i++){P.push({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.8+0.6),s:Math.random()*0.5+0.2,o:Math.random()*0.5+0.25,c:Math.random()<0.7?'231,196,125':'255,153,0'})} }
+    for(var i=0;i<n;i++){P.push({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.3+0.5),s:Math.random()*0.45+0.18,o:Math.random()*0.3+0.28,c:Math.random()<0.7?'231,196,125':'255,153,0'})} }
   init();
   var last=0;
   function frame(t){ requestAnimationFrame(frame); if(t-last<33)return; last=t;
@@ -863,6 +874,37 @@ document.querySelectorAll('#langbar button').forEach(function(b){b.addEventListe
   window.addEventListener('resize',function(){ if(window.innerWidth>=900) toggle(false); });
 })();
 /* -- SP-NAV-END -- */
+</script>
+
+<script>
+/* -- SP-ANIM-START -- comptadors + parallax */
+(function(){
+  var reduce = window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    var cio=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return; var el=e.currentTarget.querySelectorAll('.count')[0]; var start=performance.now(),to=parseFloat(el.dataset.to),dur=1500;
+        function fmt(n){ return n.toLocaleString('ca-ES').replace(/,/g,'.')+ (el.dataset.suffix||''); }
+        (function step(now){ var k=Math.min((now-start)/dur,1); var ease=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; el.textContent=fmt(Math.round(to*ease)); if(k<1)requestAnimationFrame(step); })(start);
+        cio.unobserve(e.target);
+      });
+    },{threshold:0.6});
+    // observar cada element .cost (pare del .count)
+    document.querySelectorAll('.cost').forEach(function(el){ if(el.querySelector('.count')) cio.observe(el); });
+    /* parallax */
+    var tiles=Array.prototype.slice.call(document.querySelectorAll('.bg-img'));
+    var ticking=false;
+    function upd(){
+      var vh=window.innerHeight;
+      tiles.forEach(function(t){ var r=t.getBoundingClientRect(); if(r.bottom<0||r.top>vh)return;
+        var mid=r.top+r.height/2,d=mid-vh/2; t.style.transform='translateY('+(d*-0.05)+'px) scale(1.05)'; });
+      ticking=false;
+    }
+    window.addEventListener('scroll',function(){ if(!ticking){requestAnimationFrame(upd);ticking=true;} },{passive:true});
+    upd();
+  }
+})();
+/* -- SP-ANIM-END -- */
 </script>
 </body>
 </html>
